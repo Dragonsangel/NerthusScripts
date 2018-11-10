@@ -2,7 +2,7 @@
 // @id             iitc-plugin-nerthus@blinde
 // @name           IITC Plugin: Nerthus Portal Grabber
 // @category       Misc
-// @version        0.0.0.1.20181110.0004
+// @version        0.0.0.1.20181110.0005
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion
 // @updateURL      https://raw.githubusercontent.com/Dragonsangel/NerthusScripts/master/NerthusPortalGrabber.meta.js
 // @downloadURL    https://raw.githubusercontent.com/Dragonsangel/NerthusScripts/master/NerthusPortalGrabber.user.js

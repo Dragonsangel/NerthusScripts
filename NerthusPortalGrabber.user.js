@@ -2,7 +2,7 @@
 // @id             iitc-plugin-nerthus@blinde
 // @name           IITC Plugin: Nerthus Portal Grabber
 // @category       Misc
-// @version        0.0.0.1.20181110.0004
+// @version        0.0.0.1.20181110.0005
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion
 // @updateURL      https://raw.githubusercontent.com/Dragonsangel/NerthusScripts/master/NerthusPortalGrabber.meta.js
 // @downloadURL    https://raw.githubusercontent.com/Dragonsangel/NerthusScripts/master/NerthusPortalGrabber.user.js
@@ -29,14 +29,14 @@ function wrapper(plugin_info) {
 //PLUGIN AUTHORS: writing a plugin outside of the IITC build environment? if so, delete these lines!!
 //(leaving them in place might break the 'About IITC' page or break update checks)
     plugin_info.buildName = 'local';
-    plugin_info.dateTimeVersion = '20181110.0004';
+    plugin_info.dateTimeVersion = '20181110.0005';
     plugin_info.pluginId = 'nerthus';
 //END PLUGIN AUTHORS NOTE
 
 // PLUGIN START ////////////////////////////////////////////////////////
 
   window.plugin.nerthus = function() {};
-  window.plugin.nerthus.version = '0.0.0.4 Beta';
+  window.plugin.nerthus.version = '0.0.0.5 Beta';
 
   window.plugin.nerthus.setup = function() {
     window.addHook('mapDataRefreshEnd', window.plugin.nerthus.postPortalDetails);
