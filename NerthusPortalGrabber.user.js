@@ -4,8 +4,8 @@
 // @category       Misc
 // @version        0.0.0.1.20181110.0002
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion
-// @updateURL      https://github.com/Dragonsangel/NerthusScripts/NerthusPortalGrabber.meta.js
-// @downloadURL    https://github.com/Dragonsangel/NerthusScripts/NerthusPortalGrabber.user.js
+// @updateURL      https://raw.githubusercontent.com/Dragonsangel/NerthusScripts/master/NerthusPortalGrabber.meta.js
+// @downloadURL    https://raw.githubusercontent.com/Dragonsangel/NerthusScripts/master/NerthusPortalGrabber.user.js
 // @description    Nerthus helper script
 // @include        https://ingress.com/intel/*
 // @include        http://ingress.com/intel/*
