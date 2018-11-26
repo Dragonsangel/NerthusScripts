@@ -2,7 +2,7 @@
 // @id             iitc-plugin-nerthus@blinde
 // @name           IITC Plugin: Nerthus Portal Grabber
 // @category       Misc
-// @version        0.0.0.6
+// @version        0.0.0.7
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion
 // @updateURL      https://raw.githubusercontent.com/Dragonsangel/NerthusScripts/master/NerthusPortalGrabber.meta.js
 // @downloadURL    https://raw.githubusercontent.com/Dragonsangel/NerthusScripts/master/NerthusPortalGrabber.user.js
@@ -29,14 +29,14 @@ function wrapper(plugin_info) {
 //PLUGIN AUTHORS: writing a plugin outside of the IITC build environment? if so, delete these lines!!
 //(leaving them in place might break the 'About IITC' page or break update checks)
     plugin_info.buildName = 'local';
-    plugin_info.dateTimeVersion = '0.0.0.6';
+    plugin_info.dateTimeVersion = '0.0.0.7';
     plugin_info.pluginId = 'nerthus';
 //END PLUGIN AUTHORS NOTE
 
 // PLUGIN START ////////////////////////////////////////////////////////
 
   window.plugin.nerthus = function() {};
-  window.plugin.nerthus.version = '0.0.0.6 Beta';
+  window.plugin.nerthus.version = '0.0.0.7 Beta';
 
   window.plugin.nerthus.setup = function() {
     window.addHook('mapDataRefreshEnd', window.plugin.nerthus.postPortalDetails);
@@ -68,7 +68,7 @@ function wrapper(plugin_info) {
     if (foundPortals.length > 0) {
       $.ajax({
         type: "POST",
-        url: 'https://nerthustest.dragonsangel.de/Utilities/SubmitPortal',
+        url: 'https://nerthusbot.de/Utilities/SubmitPortal',
         contentType: "application/json",
         crossDomain: true,
         data: JSON.stringify(foundPortals),
