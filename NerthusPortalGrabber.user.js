@@ -2,7 +2,7 @@
 // @id             iitc-plugin-nerthus@blinde
 // @name           IITC Plugin: Nerthus Portal Grabber
 // @category       Misc
-// @version        0.0.0.7
+// @version        0.0.0.8
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion
 // @updateURL      https://raw.githubusercontent.com/Dragonsangel/NerthusScripts/master/NerthusPortalGrabber.meta.js
 // @downloadURL    https://raw.githubusercontent.com/Dragonsangel/NerthusScripts/master/NerthusPortalGrabber.user.js
@@ -29,23 +29,25 @@ function wrapper(plugin_info) {
 //PLUGIN AUTHORS: writing a plugin outside of the IITC build environment? if so, delete these lines!!
 //(leaving them in place might break the 'About IITC' page or break update checks)
     plugin_info.buildName = 'local';
-    plugin_info.dateTimeVersion = '0.0.0.7';
+    plugin_info.dateTimeVersion = '0.0.0.8';
     plugin_info.pluginId = 'nerthus';
 //END PLUGIN AUTHORS NOTE
 
 // PLUGIN START ////////////////////////////////////////////////////////
 
   window.plugin.nerthus = function() {};
-  window.plugin.nerthus.version = '0.0.0.7 Beta';
+  const nerthus = window.plugin;
+  nerthus.version = '0.0.0.7 Beta';
 
-  window.plugin.nerthus.setup = function() {
-    window.addHook('mapDataRefreshEnd', window.plugin.nerthus.postPortalDetails);
+  nerthus.setup = function() {
+    window.addHook('mapDataRefreshEnd', nerthus.postPortalDetails);
+    window.addHook('portalSelected', nerthus.onPortalSelected);
   };
 
 
   ///////////////////////////////////////////////////////////
   // API CALL
-  window.plugin.nerthus.postPortalDetails = function(resource, data) {
+  nerthus.postPortalDetails = function(resource, data) {
     var foundPortals = new Array();
     var displayBounds = map.getBounds();
     $.each(window.portals, function(i, portal) {
@@ -79,7 +81,23 @@ function wrapper(plugin_info) {
     }
   };
 
-  var setup = plugin.nerthus.setup;
+  nerthus.onPortalSelected = function () {
+    const portalDetails = document.getElementById('portaldetails');
+
+		if (window.selectedPortal == null) {
+			return;
+		}
+
+		if (!nerthus.onPortalSelectedPending) {
+			nerthus.onPortalSelectedPending = true;
+
+			setTimeout(function () {
+				nerthus.onPortalSelectedPending = false;
+        $(portalDetails).append('<div style="color:cyan"> Portal ID: ' + window.selectedPortal + '</div>');
+			}, 0);
+		}
+  }
+  var setup = nerthus.setup;
 
   // PLUGIN END //////////////////////////////////////////////////////////
 
