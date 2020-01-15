@@ -1,8 +1,8 @@
 // ==UserScript==
-// @id             iitc-plugin-nerthus@blinde
+// @id             iitc-plugin-nerthus@dragonsangel
 // @name           IITC Plugin: Nerthus Portal Grabber
 // @category       Misc
-// @version        0.0.0.8
+// @version        0.0.0.9
 // @namespace      https://github.com/jonatkins/ingress-intel-total-conversion
 // @updateURL      https://raw.githubusercontent.com/Dragonsangel/NerthusScripts/master/NerthusPortalGrabber.meta.js
 // @downloadURL    https://raw.githubusercontent.com/Dragonsangel/NerthusScripts/master/NerthusPortalGrabber.user.js
@@ -29,7 +29,7 @@ function wrapper(plugin_info) {
 //PLUGIN AUTHORS: writing a plugin outside of the IITC build environment? if so, delete these lines!!
 //(leaving them in place might break the 'About IITC' page or break update checks)
     plugin_info.buildName = 'local';
-    plugin_info.dateTimeVersion = '0.0.0.8';
+    plugin_info.dateTimeVersion = '0.0.0.9';
     plugin_info.pluginId = 'nerthus';
 //END PLUGIN AUTHORS NOTE
 
@@ -37,7 +37,7 @@ function wrapper(plugin_info) {
 
   window.plugin.nerthus = function() {};
   const nerthus = window.plugin;
-  nerthus.version = '0.0.0.7 Beta';
+  nerthus.version = '0.0.0.9 Beta';
 
   nerthus.setup = function() {
     window.addHook('mapDataRefreshEnd', nerthus.postPortalDetails);
@@ -58,7 +58,7 @@ function wrapper(plugin_info) {
         var guid = portal.options.guid;
         var d = portal.options.data;
         var name = d.title;
-        name.replace(/\s+/g, " ");
+        if (name) {name.replace(/\s+/g, " "); } else { console.log(portal.options); return;}
         var lat = d.latE6/1E6;
         var lng = d.lngE6/1E6;
         var imageUrl = d.image;
@@ -68,16 +68,18 @@ function wrapper(plugin_info) {
     });
 
     if (foundPortals.length > 0) {
-      $.ajax({
-        type: "POST",
-        url: 'https://nerthusbot.de/Utilities/SubmitPortal',
-        contentType: "application/json",
-        crossDomain: true,
-        data: JSON.stringify(foundPortals),
-        success: function(data, textStatus, jqXHR) {
-          console.log("Nerthus got the data");
-        }
-      });
+      while (foundPortals.length) {
+        $.ajax({
+          type: "POST",
+          url: 'https://nerthusbot.de/Utilities/SubmitPortal',
+          contentType: "application/json",
+          crossDomain: true,
+          data: JSON.stringify(foundPortals.splice(0,1000)),
+          success: function(data, textStatus, jqXHR) {
+            console.log("Nerthus got the data");
+          }
+        });
+      }
     }
   };
 
